@@ -1,0 +1,261 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Arial, Helvetica, sans-serif; /* Fuente ligeramente más moderna */
+}
+
+body{
+    background:#111111; /* Negro neutro */
+    color:#e0e0e0; /* Gris muy claro para el texto general (menos agresivo que el blanco puro) */
+}
+
+/* HEADER */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 60px;
+    background:#000000; /* Negro puro */
+    border-bottom: 1px solid #333;
+}
+
+header h1{
+    color:#00e5ff; /* Cian eléctrico */
+}
+
+nav a{
+    margin-left:20px;
+    text-decoration:none;
+    color:#e0e0e0;
+    font-weight:bold;
+    transition: 0.3s;
+}
+
+nav a:hover{
+    color:#00e5ff; /* Resaltado en cian */
+}
+
+/* HERO GENERAL */
+.hero{
+    height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    position:relative;
+}
+
+/* 🔥 EFECTO OSCURO PRO */
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6); /* Un poco más oscuro */
+}
+
+.hero-text{
+    position:relative;
+    z-index:1;
+    background:rgba(0,0,0,0.7);
+    padding:40px;
+    border-radius:10px;
+    text-align:center;
+    border: 1px solid rgba(0, 229, 255, 0.2); /* Borde sutil en cian */
+}
+
+.hero-text h2{
+    font-size:45px;
+    margin-bottom:20px;
+    color: white;
+}
+
+/* 🔥 FONDOS POR PANTALLA (NO CAMBIAN) */
+.inicio{ background-image:url("img_top_slider03.jpg"); }
+.camara-bg{ background-image:url("a4e2d2c15e45c186bed824.57220236_.webp"); }
+.ejercicios-bg{ background-image:url("image2_6cd44b71-feae-4bbb-be3a-f5551fc76276.webp"); }
+.postura-bg{ background-image:url("vida-fit-saludable.jpg"); }
+.sobre-bg{ background-image:url("img/sobre.jpg"); }
+
+/* BOTONES GENERALES (Estilo CTA Naranja) */
+button{
+    padding:10px 20px;
+    background:#ff6d00; /* Naranja enérgico */
+    border:none;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight: bold;
+}
+
+button:hover{
+    background:#ff9100; /* Naranja más claro */
+    transform:scale(1.05);
+}
+
+/* INFO */
+.info{
+    padding:60px;
+    text-align:center;
+    background:#1a1a1a;
+}
+
+/* CARDS */
+.cards{
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap; /* Para responsive */
+    gap:30px;
+    padding:40px;
+}
+
+.card{
+    background:#000000;
+    padding:30px;
+    width:280px;
+    border-radius:10px;
+    text-align:center;
+    transition:0.3s;
+    border: 1px solid #333;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color: #00e5ff; /* Borde cian al hacer hover */
+}
+
+.card h3{
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* FITCAM */
+.fitcam{
+    background: linear-gradient(135deg, #001a1d, #000000, #001a1d); /* Degradado cian muy oscuro */
+    padding:70px 20px;
+    text-align:center;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.fitcam h2{
+    font-size:38px;
+    margin-bottom:15px;
+    color: white;
+}
+
+.fitcam p{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.btn-fitcam{
+    background:#00e5ff; /* Cian eléctrico */
+    color:#000000; /* Texto negro para contraste */
+    border:none;
+    padding:12px 25px;
+    font-weight:bold;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.3s;
+    text-transform: uppercase;
+}
+
+.btn-fitcam:hover{
+    background: white;
+    color: black;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+    z-index: 2000;
+}
+
+.modal-content{
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    width:300px;
+    border: 1px solid #333;
+}
+
+.modal-content h3{ color: white; }
+
+.modal-content input{
+    padding:12px;
+    background: #000;
+    border:1px solid #333;
+    color: white;
+    border-radius:5px;
+}
+
+/* CAMARA */
+.camara-container{
+    min-height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    gap:15px;
+    padding: 20px;
+}
+
+video{
+    width:100%;
+    max-width:500px; /* Mejor control de tamaño */
+    aspect-ratio: 4/3;
+    background:black;
+    border-radius:15px;
+    border:4px solid #00e5ff; /* Borde cian */
+    box-shadow:0 0 25px rgba(0, 229, 255, 0.4); /* Sombra cian corregida */
+}
+
+.botones-camara{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+/* FRASE */
+.frase{
+    margin-top:20px;
+    font-size:18px;
+    font-style:italic;
+    color:#00e5ff; /* Color cian */
+    animation:fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* FOOTER */
+footer{
+    background:#000000;
+    padding:30px;
+    text-align:center;
+    margin-top:40px;
+    border-top: 1px solid #333;
+}
