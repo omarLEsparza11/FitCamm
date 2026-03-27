@@ -45,10 +45,11 @@
         <p>Descubre cómo correr con una postura eficiente.</p>
     </div>
 
-    <div class="card">
-        <h3>Estiramientos</h3>
-        <p>Evita lesiones con una postura correcta al estirar.</p>
-    </div>
+<div class="card">
+    <h3>Calentamiento</h3>
+    <p>Prepara tu cuerpo antes de entrenar.</p>
+    <button onclick="irCalentamiento()">Ver rutina</button>
+</div>
 
 </section>
 
@@ -79,6 +80,37 @@
     <p>Proyecto PosturaFit + FitCam</p>
 </footer>
 
+<script>
+function abrirFormulario(){
+    document.getElementById("modal").style.display = "flex";
+}
+
+function cerrarFormulario(){
+    document.getElementById("modal").style.display = "none";
+}
+
+function enviarDatos(){
+    let edad = document.getElementById("edad").value;
+    let peso = document.getElementById("peso").value;
+    let altura = document.getElementById("altura").value;
+
+    if(edad === "" || peso === "" || altura === ""){
+        alert("Llena todos los campos");
+        return;
+    }
+
+    localStorage.setItem("edad", edad);
+    localStorage.setItem("peso", peso);
+    localStorage.setItem("altura", altura);
+
+    window.location.href = "camara.html";
+}
+
+// 🔥 NUEVA FUNCIÓN
+function irCalentamiento(){
+    window.location.href = "calentamiento.html";
+}
+</script>
 <script>
 function abrirFormulario(){
     document.getElementById("modal").style.display = "flex";
