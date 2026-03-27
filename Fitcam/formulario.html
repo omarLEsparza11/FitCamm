@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario FitCam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>FitCam</h1>
+</header>
+
+<!-- HERO -->
+<section class="hero inicio">
+    <div class="hero-text">
+        <h2>Ingresa tus datos</h2>
+        <p>Esto nos ayudará a personalizar tu entrenamiento.</p>
+    </div>
+</section>
+
+<!-- FORMULARIO -->
+<section class="fitcam">
+    <div class="fitcam-content">
+
+        <h2>Datos básicos</h2>
+
+        <input type="number" placeholder="Edad" id="edad">
+        <input type="number" placeholder="Peso (kg)" id="peso">
+        <input type="number" placeholder="Altura (cm)" id="altura">
+
+        <br><br>
+
+        <button class="btn-fitcam" onclick="enviarDatos()">Continuar</button>
+        <button class="btn-fitcam" onclick="volver()">Volver</button>
+
+    </div>
+</section>
+
+<footer>
+    <p>Proyecto PosturaFit + FitCam</p>
+</footer>
+
+<script>
+function enviarDatos(){
+    let edad = document.getElementById("edad").value;
+    let peso = document.getElementById("peso").value;
+    let altura = document.getElementById("altura").value;
+
+    if(edad === "" || peso === "" || altura === ""){
+        alert("Llena todos los campos");
+        return;
+    }
+
+    localStorage.setItem("edad", edad);
+    localStorage.setItem("peso", peso);
+    localStorage.setItem("altura", altura);
+
+    window.location.href = "camara.html";
+}
+
+function volver(){
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

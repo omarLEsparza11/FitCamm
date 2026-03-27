@@ -58,7 +58,7 @@
     <div class="fitcam-content">
         <h2>Entrena con tecnología 🔥</h2>
         <p>FitCam analiza tu postura en tiempo real mientras haces ejercicio.</p>
-        <button class="btn-fitcam" onclick="abrirFormulario()">Probar FitCam</button>
+        <button class="btn-fitcam" onclick="irFormulario()">Probar FitCam</button>
     </div>
 </section>
 
@@ -112,29 +112,21 @@ function irCalentamiento(){
 }
 </script>
 <script>
-function abrirFormulario(){
-    document.getElementById("modal").style.display = "flex";
+function irFormulario(){
+    window.location.href = "formulario.html";
 }
 
-function cerrarFormulario(){
-    document.getElementById("modal").style.display = "none";
+function irCalentamiento(){
+    window.location.href = "calentamiento.html";
+}
+</script>
+<script>
+function irFormulario(){
+    window.location.href = "formulario.html";
 }
 
-function enviarDatos(){
-    let edad = document.getElementById("edad").value;
-    let peso = document.getElementById("peso").value;
-    let altura = document.getElementById("altura").value;
-
-    if(edad === "" || peso === "" || altura === ""){
-        alert("Llena todos los campos");
-        return;
-    }
-
-    localStorage.setItem("edad", edad);
-    localStorage.setItem("peso", peso);
-    localStorage.setItem("altura", altura);
-
-    window.location.href = "camara.html";
+function irCalentamiento(){
+    window.location.href = "calentamiento.html";
 }
 </script>
 
