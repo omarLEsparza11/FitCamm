@@ -12,36 +12,32 @@
     <h1>FitCam</h1>
     <nav>
         <a href="index.html">Inicio</a>
-        <a href="ejercicios.html">Ejercicios</a>
-        <a href="postura.html">Postura</a>
         <a href="camara.html">Cámara</a>
-        <a href="sobre.html">Sobre</a>
     </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero camara-bg">
-    <div class="hero-text">
-        <h2>Usa la cámara</h2>
-    </div>
-</section>
-
-<!-- CAMARA CENTRADA -->
 <section class="camara-container">
 
-    <h2>Graba tu ejercicio</h2>
+    <h2>Graba o sube tu ejercicio</h2>
 
-    <video id="video" autoplay></video>
+    <video id="video" autoplay width="400"></video>
 
-    <div class="botones-camara">
+    <div>
         <button onclick="activarCamara()">Encender</button>
         <button onclick="apagarCamara()">Apagar</button>
         <button onclick="grabar()">Grabar</button>
         <button onclick="detener()">Detener</button>
     </div>
 
-    <!-- 🔥 FRASE MOTIVACIONAL -->
-    <p id="frase" class="frase"></p>
+    <br>
+
+    <input type="file" id="fileInput" accept="video/*">
+    <button onclick="subirVideo()">Subir Video</button>
+
+    <div class="resultado-box">
+        <h2 id="resultado"></h2>
+        <p id="frase"></p>
+    </div>
 
 </section>
 

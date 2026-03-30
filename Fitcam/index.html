@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PosturaFit</title>
+    <title>FitCam</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,124 +10,16 @@
 
 <header>
     <h1>FitCam</h1>
-    
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="camara.html">Cámara</a>
+    </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero inicio">
-    <div class="hero-text">
-        <h2>Mejora tu postura al entrenar</h2>
-        <p>Aprende a realizar ejercicios correctamente y evita lesiones.</p>
-    </div>
+<section>
+    <h2>Bienvenido a FitCam</h2>
+    <p>Analiza tu postura al hacer ejercicio con inteligencia artificial.</p>
 </section>
-
-<!-- INFO -->
-<section class="info">
-    <h2>¿Por qué es importante la postura?</h2>
-    <p>
-        Mantener una postura correcta durante el ejercicio ayuda a prevenir
-        lesiones, mejorar el rendimiento físico y aprovechar al máximo
-        cada entrenamiento.
-    </p>
-</section>
-
-<!-- CARDS -->
-<section class="cards">
-
-    <div class="card">
-        <h3>Sentadillas</h3>
-        <p>Aprende la posición correcta de espalda y rodillas.</p>
-    </div>
-
-    <div class="card">
-        <h3>Running</h3>
-        <p>Descubre cómo correr con una postura eficiente.</p>
-    </div>
-
-<div class="card">
-    <h3>Calentamiento</h3>
-    <p>Prepara tu cuerpo antes de entrenar.</p>
-    <button onclick="irCalentamiento()">Ver rutina</button>
-</div>
-
-</section>
-
-<!-- 🔥 FITCAM (AHORA PRINCIPAL) -->
-<section class="fitcam">
-    <div class="fitcam-content">
-        <h2>Entrena con tecnología 🔥</h2>
-        <p>FitCam analiza tu postura en tiempo real mientras haces ejercicio.</p>
-        <button class="btn-fitcam" onclick="irFormulario()">Probar FitCam</button>
-    </div>
-</section>
-
-<!-- 🔥 FORMULARIO -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h2>Datos básicos</h2>
-
-        <input type="number" placeholder="Edad" id="edad">
-        <input type="number" placeholder="Peso (kg)" id="peso">
-        <input type="number" placeholder="Altura (cm)" id="altura">
-
-        <button onclick="enviarDatos()">Continuar</button>
-        <button class="cerrar" onclick="cerrarFormulario()">Cancelar</button>
-    </div>
-</div>
-
-<footer>
-    <p>Proyecto PosturaFit + FitCam</p>
-</footer>
-
-<script>
-function abrirFormulario(){
-    document.getElementById("modal").style.display = "flex";
-}
-
-function cerrarFormulario(){
-    document.getElementById("modal").style.display = "none";
-}
-
-function enviarDatos(){
-    let edad = document.getElementById("edad").value;
-    let peso = document.getElementById("peso").value;
-    let altura = document.getElementById("altura").value;
-
-    if(edad === "" || peso === "" || altura === ""){
-        alert("Llena todos los campos");
-        return;
-    }
-
-    localStorage.setItem("edad", edad);
-    localStorage.setItem("peso", peso);
-    localStorage.setItem("altura", altura);
-
-    window.location.href = "camara.html";
-}
-
-// 🔥 NUEVA FUNCIÓN
-function irCalentamiento(){
-    window.location.href = "calentamiento.html";
-}
-</script>
-<script>
-function irFormulario(){
-    window.location.href = "formulario.html";
-}
-
-function irCalentamiento(){
-    window.location.href = "calentamiento.html";
-}
-</script>
-<script>
-function irFormulario(){
-    window.location.href = "formulario.html";
-}
-
-function irCalentamiento(){
-    window.location.href = "calentamiento.html";
-}
-</script>
 
 </body>
 </html>
