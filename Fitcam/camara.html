@@ -19,19 +19,25 @@
     </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero camara-bg">
     <div class="hero-text">
         <h2>Usa la cámara</h2>
     </div>
 </section>
 
-<!-- CAMARA CENTRADA -->
 <section class="camara-container">
 
     <h2>Graba tu ejercicio</h2>
 
     <video id="video" autoplay></video>
+
+    <br><br>
+
+    <!-- 🔥 SUBIR VIDEO -->
+    <input type="file" id="fileInput">
+    <button onclick="enviarArchivo()">Subir Video</button>
+
+    <br><br>
 
     <div class="botones-camara">
         <button onclick="activarCamara()">Encender</button>
@@ -40,7 +46,10 @@
         <button onclick="detener()">Detener</button>
     </div>
 
-    <!-- 🔥 FRASE MOTIVACIONAL -->
+    <!-- RESULTADO -->
+    <h2 id="resultado"></h2>
+
+    <!-- FRASE -->
     <p id="frase" class="frase"></p>
 
 </section>

@@ -2,6 +2,40 @@ let stream;
 let mediaRecorder;
 let chunks = [];
 
+// 📤 ENVIAR VIDEO AL BACKEND
+async function subirVideo(file) {
+    const formData = new FormData();
+    formData.append("video", file);
+
+    const res = await fetch("http://localhost:5000/analizar", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await res.json();
+
+    // 🔥 mostrar resultado
+    document.getElementById("frase").innerText = data.mensaje;
+
+    if (data.resultado === "correcta") {
+        document.getElementById("resultado").innerText = "✅ Correcta";
+        document.getElementById("resultado").style.color = "green";
+    } else {
+        document.getElementById("resultado").innerText = "❌ Incorrecta";
+        document.getElementById("resultado").style.color = "red";
+    }
+}
+
+// 📁 SUBIR VIDEO DESDE PC
+function enviarArchivo(){
+    const file = document.getElementById("fileInput").files[0];
+    if(!file){
+        alert("Selecciona un video");
+        return;
+    }
+    subirVideo(file);
+}
+
 // ENCENDER CAMARA
 function activarCamara(){
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
@@ -38,18 +72,16 @@ function grabar(){
 
     mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, { type: "video/mp4" });
-        const url = URL.createObjectURL(blob);
+        chunks = [];
 
-        let a = document.createElement("a");
-        a.href = url;
-        a.download = "video_fitcam.mp4";
-        a.click();
+        // 🔥 EN VEZ DE DESCARGAR → ANALIZAR
+        subirVideo(blob);
     };
 
     mediaRecorder.start();
 }
 
-// DETENER GRABACION
+// DETENER
 function detener(){
     if(mediaRecorder){
         mediaRecorder.stop();
