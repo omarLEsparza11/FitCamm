@@ -2,15 +2,23 @@ let stream;
 let mediaRecorder;
 let chunks = [];
 
-// CAMARA
+//  CONTADOR
+let tiempo = 0;
+let intervalo;
+
+// ENCENDER CAMARA
 function activarCamara(){
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
     .then(s => {
         stream = s;
         document.getElementById("video").srcObject = stream;
+    })
+    .catch(err => {
+        alert("Error al acceder a la cámara");
     });
 }
 
+// APAGAR CAMARA
 function apagarCamara(){
     if(stream){
         stream.getTracks().forEach(track => track.stop());
@@ -20,6 +28,11 @@ function apagarCamara(){
 
 // GRABAR
 function grabar(){
+    if(!stream){
+        alert("Primero enciende la cámara");
+        return;
+    }
+
     chunks = [];
     mediaRecorder = new MediaRecorder(stream);
 
@@ -27,38 +40,91 @@ function grabar(){
         chunks.push(e.data);
     };
 
-    mediaRecorder.start();
-}
-
-// DETENER Y ENVIAR
-function detener(){
-    mediaRecorder.stop();
-
-    mediaRecorder.onstop = async () => {
+    mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, { type: "video/mp4" });
-
         enviarVideo(blob);
+
+        //  detener contador
+        clearInterval(intervalo);
+        document.getElementById("estadoGrabacion").textContent = "";
     };
+
+    mediaRecorder.start();
+
+    //  INICIAR CONTADOR
+    tiempo = 0;
+    document.getElementById("estadoGrabacion").textContent = " Grabando...";
+    
+    intervalo = setInterval(() => {
+        tiempo++;
+        document.getElementById("tiempoGrabacion").textContent = "Tiempo: " + tiempo + " s";
+    }, 1000);
 }
 
-// SUBIR ARCHIVO
+// DETENER GRABACION
+function detener(){
+    if(mediaRecorder){
+        mediaRecorder.stop();
+    }
+}
+
+// SUBIR VIDEO
 function subirVideo(){
-    const file = document.getElementById("fileInput").files[0];
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+
+    if(!file){
+        alert("Selecciona un video");
+        return;
+    }
+
     enviarVideo(file);
 }
 
-// ENVIAR AL BACKEND
-async function enviarVideo(videoFile){
-    const formData = new FormData();
-    formData.append("video", videoFile);
+//  ENVIAR AL BACKEND
+function enviarVideo(video){
+    let formData = new FormData();
+    formData.append("video", video);
 
-    const res = await fetch("http://localhost:5000/analizar", {
+    fetch("http://127.0.0.1:5000/analizar", {
         method: "POST",
         body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        let resultado = document.getElementById("resultado");
+        let frase = document.getElementById("frase");
+
+        resultado.textContent = data.resultado;
+        frase.textContent = data.mensaje;
+
+        //  COLOR
+        if(data.resultado.toLowerCase() === "correcta"){
+            resultado.style.color = "lime";
+        } else {
+            resultado.style.color = "red";
+        }
+    })
+    .catch(err => {
+        alert("Error al analizar el video");
+        console.error(err);
     });
+}
 
-    const data = await res.json();
+//  RESET
+function resetear(){
+    document.getElementById("resultado").textContent = "";
+    document.getElementById("frase").textContent = "";
+    document.getElementById("fileInput").value = "";
+    document.getElementById("estadoGrabacion").textContent = "";
+    document.getElementById("tiempoGrabacion").textContent = "";
 
-    document.getElementById("resultado").textContent = data.resultado;
-    document.getElementById("frase").textContent = data.mensaje;
+    clearInterval(intervalo);
+
+    if(stream){
+        stream.getTracks().forEach(track => track.stop());
+        document.getElementById("video").srcObject = null;
+    }
+
+    alert("Listo para otro intento ");
 }

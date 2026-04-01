@@ -9,11 +9,11 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 
-# 🔥 cargar modelos
+#  cargar modelos
 model = joblib.load("modelo.pkl")
 scaler = joblib.load("scaler.pkl")
 
-# 🔥 calcular ángulo
+#  calcular ángulo
 def calcular_angulo(a, b, c):
     a = np.array(a)
     b = np.array(b)
@@ -27,7 +27,7 @@ def calcular_angulo(a, b, c):
 
     return angulo
 
-# 🔥 procesar video
+#  procesar video
 def procesar_video(path):
     import mediapipe as mp
     from mediapipe.tasks import python
@@ -86,7 +86,7 @@ def procesar_video(path):
     cap.release()
     return datos
 
-# 🔥 API
+#  API
 @app.route("/analizar", methods=["POST"])
 def analizar():
     if "video" not in request.files:
@@ -113,12 +113,12 @@ def analizar():
     if resultado == 1:
         return jsonify({
             "resultado": "correcta",
-            "mensaje": "🔥 Excelente técnica, sigue así!"
+            "mensaje": " Excelente técnica, sigue así!"
         })
     else:
         return jsonify({
             "resultado": "incorrecta",
-            "mensaje": "💪 No te rindas, mejora tu postura!"
+            "mensaje": " No te rindas, mejora tu postura!"
         })
 
 if __name__ == "__main__":

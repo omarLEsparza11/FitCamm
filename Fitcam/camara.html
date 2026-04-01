@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Cámara - FitCam</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="camara.css">
 </head>
 
 <body>
 
 <header>
     <h1>FitCam</h1>
+
     <nav>
         <a href="index.html">Inicio</a>
+        <a href="ejercicios.html">Ejercicios</a>
+        <a href="postura.html">Postura</a>
         <a href="camara.html">Cámara</a>
+        <a href="sobre.html">Sobre</a>
     </nav>
 </header>
 
@@ -20,9 +27,15 @@
 
     <h2>Graba o sube tu ejercicio</h2>
 
-    <video id="video" autoplay width="400"></video>
+    <!-- VIDEO -->
+    <video id="video" autoplay class="video-box"></video>
 
-    <div>
+    <!--  ESTADO -->
+    <p id="estadoGrabacion" class="estado"></p>
+    <p id="tiempoGrabacion" class="tiempo"></p>
+
+    <!-- BOTONES -->
+    <div class="botones">
         <button onclick="activarCamara()">Encender</button>
         <button onclick="apagarCamara()">Apagar</button>
         <button onclick="grabar()">Grabar</button>
@@ -31,9 +44,16 @@
 
     <br>
 
-    <input type="file" id="fileInput" accept="video/*">
+    <!-- SUBIR VIDEO -->
+    <input type="file" id="fileInput" accept="video/*" class="input-video">
     <button onclick="subirVideo()">Subir Video</button>
 
+    <br>
+
+    <!-- RESET -->
+    <button onclick="resetear()" class="reset-btn">Reiniciar</button>
+
+    <!-- RESULTADO -->
     <div class="resultado-box">
         <h2 id="resultado"></h2>
         <p id="frase"></p>
@@ -41,6 +61,7 @@
 
 </section>
 
+<!-- JS -->
 <script src="script.js"></script>
 
 </body>
